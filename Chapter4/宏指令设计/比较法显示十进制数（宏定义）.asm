@@ -1,4 +1,5 @@
 ;比较法将二进制数转化为十进制数显示在屏幕上
+;采用宏定义方式实现
 .586
 CMPDISP MACRO NN
             LOCAL LAST,NEXT
