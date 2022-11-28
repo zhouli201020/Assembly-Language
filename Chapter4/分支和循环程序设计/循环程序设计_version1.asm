@@ -15,7 +15,7 @@ CODE SEGMENT USE16
           MOV    AX,DATA
           MOV    DS,AX
      INIT:
-          MOV    AL,0                ;无符号最小数0→AL
+          MOV    AL,'0'              ;无符号最小数0→AL
           LEA    BX,BUF              ;串首偏移量→BX
           MOV    CX,COUNT            ;串长度→CX
      LAST:
