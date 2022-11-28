@@ -1,5 +1,5 @@
 ;FILENAME:49.ASM
-
+;设ARRAY是5个字元素的数组，用子程序计算数组元素的累加和（不计进位），并将结果存入变量RESULT中
 .586
 
 DATA SEGMENT USE16
