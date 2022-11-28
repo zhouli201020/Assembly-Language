@@ -29,7 +29,7 @@ CODE SEGMENT USE16
     DISP:
          MOV    MAX+4,DL
          MOV    DX,OFFSET MAX
-         MOV    AH,9                ;DOS９号功能调用显示字符串
+         MOV    AH,9                ;DOS9号功能调用显示字符串
          INT    21H
     EXIT:
          MOV    AH,4CH
