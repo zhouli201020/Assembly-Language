@@ -25,7 +25,7 @@ CODE SEGMENT USE16
             SUB    AL,7H
     NEXT:   
             SUB    AL,30H
-            MOV    BL,AL              ;此处将AL移入BL是为了保护AL的数据（因为之后调用DOS２号功能会破坏AL中的内容）
+            MOV    BL,AL              ;此处将AL移入BL是为了保护AL的数据（因为之后调用DOS2号功能会破坏AL中的内容）
     DISPEQU:                          ;显示等号＝
             MOV    AH,2
             MOV    DL,'='
