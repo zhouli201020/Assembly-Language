@@ -27,7 +27,7 @@ CODE SEGMENT USE16
           LOOP   LAST
      DISP:
           MOV    MAX+4,AL            ;将MAX字符串的第5个单元修改为AL中的值
-          MOV    AH,9                ;调用DOS9号共能显示字符串
+          MOV    AH,9                ;调用DOS9号功能显示字符串
           MOV    DX,OFFSET MAX
           INT    21H
      EXIT:
