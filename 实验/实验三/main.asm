@@ -43,4 +43,4 @@ CODE SEGMENT USE16
              NOP
              JMP    WT
 CODE ENDS
-END BGE
+END BEG
