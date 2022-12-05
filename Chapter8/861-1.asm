@@ -42,7 +42,7 @@ SERVICE PROC                              ;中断服务子程序
     EXIT:   
             POP    DS                     ;恢复现场
             POPA
-            IRET                          ;返回系统08H型终端服务子程序
+            IRET                          ;返回系统08H型中断服务子程序
 SERVICE ENDP
     ;-----------------------------------------------
 READ1C PROC                               ;转移系统1CH型中断向量
