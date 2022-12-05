@@ -45,7 +45,7 @@ SERVICE PROC
             OUT    20H,AL                 ;给主8259A写结束字
             POP    DS                     ;恢复现场
             POPA
-            IRET                          ;返回系统71型中断服务子程序
+            IRET                          ;返回系统71H型中断服务子程序
 SERVICE ENDP
 
 READ0A PROC                               ;转移系统0AH型中断向量
