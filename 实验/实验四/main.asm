@@ -17,8 +17,7 @@ CODE SEGMENT USE16
             MOV    AX,DATA
             MOV    DS,AX
             CLI                           ;关中断
-            CALL   I8250_Z                ;8250主串口初始化
-            CALL   I8250_F                ;8250辅串口初始化
+            CALL   I8250                  ;8250辅串口初始化
             CALL   I8259                  ;开放主8259A辅串口中断
             CALL   RD0B                   ;读取0BH型中断向量
             CALL   WR0B                   ;置换0BH型中断向量
@@ -28,20 +27,15 @@ CODE SEGMENT USE16
     SCANT:  
             CMP    FLAG,-1
             JZ     RETURN                 ;接收到回车则程序结束
-            MOV    DX,3FDH
+            MOV    DX,2FDH
             IN     AL,DX
             TEST   AL,20H                 ;查询发送保持寄存器是否空闲
             JZ     SCANT
             MOV    AL,[BX]
-            MOV    DX,3F8H
+            MOV    DX,2F8H
             OUT    DX,AL                  ;向发送保持寄存器传一个字符
             INC    BX
             LOOP   SCANT
-    LAST:   
-            MOV    DX,3FDH
-            IN     AL,DX
-            TEST   AL,40H
-            JZ     LAST
     RETURN: 
             CALL   RESET
             MOV    AH,4CH
@@ -73,29 +67,7 @@ RECEIVE PROC
             IRET
 RECEIVE ENDP
 
-I8250_Z PROC
-            MOV    DX,3FBH
-            MOV    AL,80H
-            OUT    DX,AL                  ;寻址位置1
-            MOV    DX,3F9H
-            MOV    AL,0
-            OUT    DX,AL                  ;写除数寄存器高8位
-            MOV    DX,3F8H
-            MOV    AL,30H
-            OUT    DX,AL                  ;写除数寄存器低8位
-            MOV    DX,3FBH
-            MOV    AL,0AH
-            OUT    DX,AL                  ;写数据帧格式
-            MOV    DX,3F9H
-            MOV    AL,0
-            OUT    DX,AL                  ;禁止8250中断
-            MOV    DX,3FCH
-            MOV    AL,10H                 ;8250工作在内环自检方式，禁止中断
-            OUT    DX,AL
-            RET
-I8250_Z ENDP
-
-I8250_F PROC
+I8250 PROC
             MOV    DX,2FBH
             MOV    AL,80H
             OUT    DX,AL                  ;寻址位置1
@@ -115,7 +87,7 @@ I8250_F PROC
             MOV    AL,18H                 ;8250工作在内环自检方式，允许8250送出中断请求
             OUT    DX,AL
             RET
-I8250_F ENDP
+I8250 ENDP
 
 I8259 PROC
             IN     AL,21H                 ;主8259A中断屏蔽寄存器口地址
